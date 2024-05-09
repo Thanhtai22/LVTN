@@ -22,6 +22,7 @@ function App() {
     dispatch(actions.getPrices())
     dispatch(actions.getAreas())
     dispatch(actions.getProvinces())
+    dispatch(actions.getDictricts())
   }, [])
 
   return (

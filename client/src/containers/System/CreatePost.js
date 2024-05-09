@@ -27,7 +27,8 @@ const CreatePost = ({ isEdit }) => {
             areaCode: dataEdit?.areaCode || '',
             description: dataEdit?.description ? JSON.parse(dataEdit?.description) : '',
             target: dataEdit?.overviews?.target || '',
-            province: dataEdit?.province || ''
+            province: dataEdit?.province || '',
+            dictrict: dataEdit?.dictrict || ''
         }
 
         return initData
@@ -142,7 +143,9 @@ const CreatePost = ({ isEdit }) => {
             areaCode: '',
             description: '',
             target: '',
-            province: ''
+            province: '',
+            dictrict: ''
+
         })
     }
 

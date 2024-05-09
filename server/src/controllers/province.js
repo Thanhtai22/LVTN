@@ -8,7 +8,7 @@ export const getProvinces = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             err: -1,
-            msg: 'Failed at category controller: ' + error
+            msg: 'Failed at province controller: ' + error
         })
     }
 }
