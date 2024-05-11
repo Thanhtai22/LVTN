@@ -28,5 +28,4 @@ const memuSidebar = [
         icon: <BiUserPin />
     }
 ]
-
 export default memuSidebar

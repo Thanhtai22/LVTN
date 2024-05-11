@@ -116,3 +116,16 @@ export const apiDeletePost = (postId) => new Promise(async (resolve, reject) => 
         reject(error)
     }
 })
+
+export const apiUpdatePostLikeStatus = (postId, isLiked) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'put',
+            url: `/api/v1/post/update-like-status/${postId}`, // Assuming your backend API route to update like status follows this pattern
+            data: { isLiked }, // Sending the updated like status in the request body
+        });
+        resolve(response);
+    } catch (error) {
+        reject(error);
+    }
+});

@@ -1,6 +1,6 @@
 import icons from './icons'
 
-const { ImPencil2, MdOutlineLibraryBooks, BiUserPin } = icons
+const { ImPencil2, MdOutlineLibraryBooks, BiUserPin, FaHeart } = icons
 
 const menuManage = [
     {
@@ -20,7 +20,13 @@ const menuManage = [
         text: 'Thông tin tài khoản',
         path: '/he-thong/thong-tin-tai-khoan',
         icon: <BiUserPin />
-    }
+    },
+    {
+        id: 3,
+        text: 'Yêu Thích',
+        path: '/yeu-thich',
+        icon: <FaHeart />
+    },
 ]
 
 export default menuManage

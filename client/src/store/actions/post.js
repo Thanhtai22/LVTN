@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsLimitAdmin } from '../../services/post'
+import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsLimitAdmin, apiUpdatePostLikeStatus } from '../../services/post'
 
 export const getPosts = () => async (dispatch) => {
     try {
@@ -130,3 +130,35 @@ export const getOutStandingPosts = () => async (dispatch) => {
         })
     }
 }
+
+// Action creator to update post like status
+export const updatePostLikeStatus = (postId, isLiked) => async (dispatch) => {
+    try {
+        // Make an API call to update the like status of the post
+        const response = await apiUpdatePostLikeStatus(postId, isLiked);
+
+        // Dispatch an action based on the API response
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.UPDATE_POST_LIKE_STATUS_SUCCESS,
+                postId,
+                isLiked
+            });
+        } else {
+            dispatch({
+                type: actionTypes.UPDATE_POST_LIKE_STATUS_FAILURE,
+                error: response?.data.msg || 'Failed to update like status'
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.UPDATE_POST_LIKE_STATUS_FAILURE,
+            error: error.message || 'Failed to update like status'
+        });
+    }
+};
+
+export const setShowFavorites = (showFavorites) => ({
+    type: actionTypes.SET_SHOW_FAVORITES,
+    payload: showFavorites,
+  });

@@ -4,7 +4,7 @@ import { v4 as generateId } from 'uuid'
 import generateCode from '../ultis/generateCode'
 import moment from 'moment'
 import generateDate from '../ultis/generateDate';
-
+import Post from '../models/post';
 export const getPostsService = () => new Promise(async (resolve, reject) => {
     try {
         const response = await db.Post.findAll({
@@ -278,3 +278,17 @@ export const deletePost = (postId) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+
+export const updatePostLike = async (postId, isLiked) => {
+    try {
+      const post = await Post.findById(postId);
+      if (!post) {
+        throw new Error('Post not found');
+      }
+      post.isLiked = isLiked;
+      await post.save();
+      return { success: true, message: 'Post like status updated successfully' };
+    } catch (error) {
+      throw new Error('Failed to update post like status: ' + error.message);
+    }
+  };

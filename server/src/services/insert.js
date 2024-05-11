@@ -34,7 +34,6 @@ const hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(12
 export const insertService = () => new Promise(async (resolve, reject) => {
     try {
         const provinceCodes = []
-        const dictrictCodes = []
         const labelCodes = []
         dataBody.forEach(cate => {
             cate.body.forEach(async (item) => {
@@ -49,13 +48,6 @@ export const insertService = () => new Promise(async (resolve, reject) => {
                     code: provinceCode,
                     value: item?.header?.address?.split(',')?.slice(-1)[0].trim()
                 })
-
-                let dictrictCode = generateCode(item?.header?.address?.split(',')?.slice(-2)[0]).trim()
-                dictrictCodes?.every(item => item?.code !== dictrictCode) && dictrictCodes.push({
-                    code: dictrictCode,
-                    value: item?.header?.address?.split(',')?.slice(-2)[0].trim()
-                })
-
                 let attributesId = v4()
                 let userId = v4()
                 let imagesId = v4()
@@ -78,7 +70,6 @@ export const insertService = () => new Promise(async (resolve, reject) => {
                     areaCode: dataArea.find(area => area.max > currentArea && area.min <= currentArea)?.code,
                     priceCode: dataPrice.find(area => area.max > currentPrice && area.min <= currentPrice)?.code,
                     provinceCode,
-                    dictrictCode,
                     priceNumber: getNumberFromStringV2(item?.header?.attributes?.price),
                     areaNumber: getNumberFromStringV2(item?.header?.attributes?.acreage)
                 })
@@ -114,9 +105,6 @@ export const insertService = () => new Promise(async (resolve, reject) => {
         })
         provinceCodes?.forEach(async (item) => {
             await db.Province.create(item)
-        })
-        dictrictCodes?.forEach(async (item) => {
-            await db.Dictrict.create(item)
         })
         labelCodes?.forEach(async (item) => {
             await db.Label.create(item)

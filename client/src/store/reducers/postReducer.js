@@ -6,7 +6,8 @@ const initState = {
     newPosts: [],
     postOfCurrent: [],
     dataEdit: {},
-    outStandingPost: {}
+    outStandingPost: {},
+    showFavorites: false,
 }
 
 const postReducer = (state = initState, action) => {
@@ -47,6 +48,11 @@ const postReducer = (state = initState, action) => {
                 ...state,
                 dataEdit: null
             }
+        case actionTypes.SET_SHOW_FAVORITES:
+            return {
+                ...state,
+                showFavorites: action.payload,
+            };
         default:
             return state;
     }

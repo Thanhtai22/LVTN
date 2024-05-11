@@ -15,7 +15,6 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
         : name === 'area' && arrMinMax?.areaArr ? arrMinMax?.areaArr[1] : 100)
     const [activedEl, setActivedEl] = useState('')
 
-
     useEffect(() => {
         const activedTrackEl = document.getElementById('track-active')
         if (activedTrackEl) {
@@ -96,7 +95,7 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
             }}
                 className='w-2/5 h-[500px] bg-white rounded-md relative'
             >
-                <div className='h-[45px] px-4 flex items-center border-b border-gray-200 '>
+                <div className='h-[45px] px-4 flex items-center border-b border-gray-200'>
                     <span className='cursor-pointer' onClick={(e) => {
                         e.stopPropagation()
                         setIsShowModal(false)
@@ -104,7 +103,7 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
                         <GrLinkPrevious size={24} />
                     </span>
                 </div>
-                {(name === 'category' || name === 'province' || name === 'dictrict') && <div className='p-4 flex flex-col'>
+                {(name === 'category' || name === 'province') && <div className='p-4 flex flex-col'>
                     <span className='py-2 flex gap-2 items-center border-b border-gray-200'>
                         <input
                             type="radio"
@@ -132,7 +131,6 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
                         )
                     })}
                 </div>}
-
                 {(name === 'price' || name === 'area') && <div className='p-12 py-20 '>
                     <div className='flex flex-col items-center justify-center relative'>
                         <div className='z-30 absolute top-[-48px] font-bold text-xl text-orange-600'>
@@ -224,5 +222,3 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
 }
 
 export default memo(Modal)
-
-

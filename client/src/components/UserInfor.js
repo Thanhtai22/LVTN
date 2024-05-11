@@ -1,11 +1,27 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import anonAvartar from '../assets/anon-avatar.png'
 import icons from '../ultils/icons'
-import { Button } from './'
+import HeartButton from './HeartButton'
+import { useSelector } from 'react-redux';
+import { saveFavoritePost, deleteFavoritePostsByPostId } from '../services/favoritePost';
+import { useDispatch } from 'react-redux'
 
 const { GoDotFill, FaPhoneAlt, SiZalo } = icons
+const UserInfor = ({ userData, onLikeToggle, userId }) => {
+    const { posts } = useSelector(state => state.post);
+    const handleLikeToggle = async (postId, updatedLiked) => {
+        onLikeToggle(postId, updatedLiked); // Update the like status in the UI
+        if(updatedLiked) {
+            saveFavoritePost({
+                userId:userId,
+                postId: postId
+            })
+        } else {
+            deleteFavoritePostsByPostId(postId); 
+        }
 
-const UserInfor = ({ userData }) => {
+    };
+
     return (
         <div className='w-full bg-yellow-500 rounded-md flex flex-col items-center p-4 gap-4'>
             <img src={anonAvartar} alt='avatar' className='w-16 h-16 object-contain rounded-full' />
@@ -29,7 +45,17 @@ const UserInfor = ({ userData }) => {
 
             </a>
 
-
+            <div className="post-list">
+                {posts && posts.map(post => (
+                    <div key={post.id} className="post">
+                        <HeartButton
+                            postId={post.id}
+                            isLiked={post.isLiked}
+                            onLikeToggle={handleLikeToggle}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

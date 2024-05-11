@@ -5,9 +5,7 @@ import { List, Pagination } from './index'
 import { useSelector } from 'react-redux'
 
 
-const Homepage = () => {
-    const { categories, prices, areas, users } = useSelector(state => state.app)
-
+const FavoritePostsPage = () => {
     return (
         <div className='w-full flex flex-col gap-3 ' >
             <div>
@@ -17,14 +15,8 @@ const Homepage = () => {
             <Province />
             <div className='w-full flex gap-3'>
                 <div className='w-[75%]'>
-                    <List isFavoritePostPage={false}/>
+                    <List isFavoritePostPage={true}/>
                     <Pagination />
-                </div>
-                <div className='w-[25%] flex flex-col gap-4 justify-start items-center'>
-                    <ItemSidebar content={categories} title='Danh sách cho thuê' />
-                    <ItemSidebar isDouble={true} type='priceCode' content={prices} title='Xem theo giá' />
-                    <ItemSidebar isDouble={true} type='areaCode' content={areas} title='Xem theo diện tích' />
-                    <RelatedPost />
                 </div>
             </div>
 
@@ -32,4 +24,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage
+export default FavoritePostsPage

@@ -17,7 +17,7 @@ import { SiZalo } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import { FaYoutube } from "react-icons/fa";
-
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 const icons = {
     AiOutlinePlusCircle,
     GrNext,
@@ -48,8 +48,9 @@ const icons = {
     SiZalo,
     FaFacebook,
     CiTwitter,
-    FaYoutube
-
+    FaYoutube,
+    FaHeart,
+    FaRegHeart
 }
 
 export default icons

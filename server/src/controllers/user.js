@@ -1,5 +1,19 @@
 import * as services from '../services/user'
 
+export const getUser = async (req, res) => {
+    const { userId } = req.params; // Get postId from request parameters
+    try {
+        const response = await services.getUserByUserId(userId)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at user controller: ' + error
+        })
+    }
+}
+
 export const getCurrent = async (req, res) => {
     const { id } = req.user
     try {

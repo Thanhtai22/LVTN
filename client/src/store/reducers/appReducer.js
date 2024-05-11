@@ -4,8 +4,7 @@ const initState = {
     categories: [],
     prices: [],
     areas: [],
-    provinces: [],
-    dictricts: []
+    provinces: []
 }
 
 const appReducer = (state = initState, action) => {
@@ -32,12 +31,6 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 provinces: action.provinces || [],
-                msg: action.msg || '',
-            }
-        case actionTypes.GET_DICTRICTS:
-            return {
-                ...state,
-                dictricts: action.dictricts || [],
                 msg: action.msg || '',
             }
         default:

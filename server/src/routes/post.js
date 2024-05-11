@@ -14,5 +14,7 @@ router.get('/limit-admin', postController.getPostsLimitAdmin)
 router.put('/update-admin', postController.updatePost)
 router.delete('/delete', postController.deletePost)
 
+// New route to handle updating the like
+router.put('/update-like', postController.updatePostLike);
 
 export default router

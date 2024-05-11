@@ -1,5 +1,6 @@
 import db from '../models'
 
+// GET ALL PROVINCE
 export const getProvincesSerivce = () => new Promise(async (resolve, reject) => {
     try {
         const response = await db.Province.findAll({

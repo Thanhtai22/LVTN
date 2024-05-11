@@ -8,7 +8,7 @@ const indexs = [0, 1, 2, 3]
 
 const { GrStar, RiHeartFill, RiHeartLine, BsBookmarkStarFill } = icons
 
-const Item = ({ images, user, title, star, description, attributes, address, id }) => {
+const Item = ({ images, user, title, star, description, attributes, address, id  }) => {
     const [isHoverHeart, setIsHoverHeart] = useState(false)
 
     const handleStar = (star) => {
