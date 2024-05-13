@@ -72,6 +72,7 @@ export const getAreas = () => async (dispatch) => {
         })
     }
 }
+
 export const getProvinces = () => async (dispatch) => {
     try {
         const response = await apis.apiGetProvinces()
@@ -92,6 +93,31 @@ export const getProvinces = () => async (dispatch) => {
         dispatch({
             type: actionTypes.GET_PROVINCES,
             provinces: null,
+            msg: ''
+        })
+    }
+}
+
+export const getDictricts = () => async (dispatch) => {
+    try {
+        const response = await apis.apiGetDictricts()
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.GET_DICTRICTS,
+                dictricts: response.data.response,
+                msg: ''
+            })
+        } else {
+            dispatch({
+                type: actionTypes.GET_DICTRICTS,
+                msg: response.data.msg,
+                dictricts: null
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_DICTRICTS,
+            dictricts: null,
             msg: ''
         })
     }

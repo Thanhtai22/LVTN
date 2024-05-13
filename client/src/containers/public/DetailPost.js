@@ -88,12 +88,25 @@ const DetailPost = () => {
           </div>
           <div className="mt-8">
             <h3 className="font-semibold text-xl my-4">Thông tin mô tả:</h3>
-            <div className="flex flex-col gap-2">
+            {/* <div className="flex flex-col gap-2">
               {posts[0]?.description &&
                 JSON.parse(posts[0]?.description)?.map((item, index) => {
                   return <span key={index}>{item}</span>;
                 })}
+            </div> */}
+            {/* <div className="flex flex-col gap-2">
+              {posts[0]?.description && typeof posts[0]?.description === 'string' && (
+                JSON.parse(posts[0]?.description)?.map((item, index) => {
+                  return <span key={index}>{item}</span>;
+                })
+              )}
+            </div> */}
+            <div className="flex flex-col gap-2">
+              {Array.isArray(posts[0]?.description) && posts[0]?.description.map((item, index) => (
+                <span key={index}>{item}</span>
+              ))}
             </div>
+
           </div>
           <div className="mt-8">
             <h3 className="font-semibold text-xl my-4">Đặc điểm tin đăng:</h3>

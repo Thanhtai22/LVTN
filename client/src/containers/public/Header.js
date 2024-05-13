@@ -71,7 +71,7 @@ const Header = ({ }) => {
                         </div>
                     )}
                     {isLoggedIn && (
-                        <div className='flex items-center gap-3 relative z-30'>
+                        <div className='flex items-center gap-3 relative z-10'>
                             <User />
                             <Button
                                 text={'Quản lý tài khoản'}

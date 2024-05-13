@@ -5,19 +5,22 @@ import HeartButton from './HeartButton'
 import { useSelector } from 'react-redux';
 import { saveFavoritePost, deleteFavoritePostsByPostId } from '../services/favoritePost';
 import { useDispatch } from 'react-redux'
+import { blobToBase64 } from '../ultils/Common/toBase64'
 
 const { GoDotFill, FaPhoneAlt, SiZalo } = icons
 const UserInfor = ({ userData, onLikeToggle, userId }) => {
     const { posts } = useSelector(state => state.post);
+    const { currentData } = useSelector(state => state.user)
+
     const handleLikeToggle = async (postId, updatedLiked) => {
         onLikeToggle(postId, updatedLiked); // Update the like status in the UI
-        if(updatedLiked) {
+        if (updatedLiked) {
             saveFavoritePost({
-                userId:userId,
+                userId: userId,
                 postId: postId
             })
         } else {
-            deleteFavoritePostsByPostId(postId); 
+            deleteFavoritePostsByPostId(postId);
         }
 
     };

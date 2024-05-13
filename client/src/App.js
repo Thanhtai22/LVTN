@@ -21,6 +21,7 @@ function App() {
     dispatch(actions.getPrices())
     dispatch(actions.getAreas())
     dispatch(actions.getProvinces())
+    dispatch(actions.getDictricts())
   }, [])
 
   return (
@@ -44,7 +45,7 @@ function App() {
           <Route path={path.EIDT_ACCOUNT} element={<EditAccount />} />
           <Route path={path.ADMIN_PAGE} element={<AdminPage />} />
         </Route>
-  
+
       </Routes>
     </div>
   );

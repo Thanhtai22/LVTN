@@ -38,6 +38,9 @@ module.exports = {
             description: {
                 type: Sequelize.TEXT
             },
+            dictrictCode: {
+                type: Sequelize.STRING
+            },
             userId: {
                 type: Sequelize.STRING
             },

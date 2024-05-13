@@ -93,7 +93,7 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
                 e.stopPropagation()
                 setIsShowModal(true)
             }}
-                className='w-2/5 h-[500px] bg-white rounded-md relative'
+                className='w-2/5 h-[500px] bg-white rounded-md relative overflow-y-scroll'
             >
                 <div className='h-[45px] px-4 flex items-center border-b border-gray-200'>
                     <span className='cursor-pointer' onClick={(e) => {
@@ -131,6 +131,35 @@ const Modal = ({ setIsShowModal, content, name, handleSubmit, queries, arrMinMax
                         )
                     })}
                 </div>}
+                {(name === 'dictrict') && <div className='p-4 flex flex-col'>
+                    <span className='py-2 flex gap-2 items-center border-b border-gray-200'>
+                        <input
+                            type="radio"
+                            name={name}
+                            value={defaultText || ''}
+                            id='default'
+                            checked={!queries[`${name}Code`] ? true : false}
+                            onChange={(e) => handleSubmit(e, { [name]: defaultText, [`${name}Code`]: null })}
+                        />
+                        <label htmlFor='default'>{defaultText}</label>
+                    </span>
+                    {content?.map(item => {
+                        return (
+                            <span key={item.code} className='py-2 flex gap-2 items-center border-b border-gray-200'>
+                                <input
+                                    type="radio"
+                                    name={name}
+                                    id={item.code}
+                                    value={item.code}
+                                    checked={item.code === queries[`${name}Code`] ? true : false}
+                                    onChange={(e) => handleSubmit(e, { [name]: item.value, [`${name}Code`]: item.code })}
+                                />
+                                <label htmlFor={item.code}>{item.value}</label>
+                            </span>
+                        )
+                    })}
+                </div>}
+
                 {(name === 'price' || name === 'area') && <div className='p-12 py-20 '>
                     <div className='flex flex-col items-center justify-center relative'>
                         <div className='z-30 absolute top-[-48px] font-bold text-xl text-orange-600'>
